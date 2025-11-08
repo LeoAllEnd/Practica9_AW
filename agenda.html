@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Agenda - Sistema Clinico</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <div class="contenedor-principal">
+        <aside class="barra-lateral">
+            <div class="logo">Sistema Clinico</div>
+            <nav>
+                <ul class="menu-navegacion">
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="pacientes.html">Pacientes</a></li>
+                    <li><a href="agenda.html" class="activo">Agenda</a></li>
+                    <li><a href="medicos.html">Medicos</a></li>
+                    <li><a href="reportes.html">Reportes</a></li>
+                    <li><a href="pagos.html">Pagos</a></li>
+                    <li><a href="tarifas.html">Tarifas</a></li>
+                    <li><a href="bitacoras.html">Bitacoras</a></li>
+                    <li><a href="especialidades.html">Especialidades</a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main class="contenido-principal">
+            <header class="encabezado">
+                <h1>Control de Agenda</h1>
+                <div class="info-usuario">
+                    <span id="nombreUsuario">Usuario</span>
+                    <button class="boton-cerrar-sesion" onclick="cerrarSesion()">Cerrar Sesion</button>
+                </div>
+            </header>
+            
+            <div class="seccion">
+                <div class="barra-herramientas">
+                    <div class="barra-busqueda">
+                        <input type="text" id="buscarCita" placeholder="Buscar cita...">
+                    </div>
+                    <div class="botones-accion">
+                        <button class="boton boton-pequeno" onclick="abrirModalNuevo()">Nueva Cita</button>
+                    </div>
+                </div>
+                
+                <div class="tabla-contenedor">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Paciente</th>
+                                <th>Medico</th>
+                                <th>Fecha</th>
+                                <th>Motivo</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaCitas">
+                            <tr>
+                                <td colspan="7" style="text-align: center;">No hay citas registradas</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Modal para agregar/editar cita -->
+    <div id="modalCita" class="modal">
+        <div class="contenido-modal">
+            <button class="cerrar-modal" onclick="cerrarModal()">&times;</button>
+            <h2 id="tituloModal">Nueva Cita</h2>
+            <form id="formularioCita">
+                <input type="hidden" id="idCita">
+                <div class="grupo-formulario">
+                    <label for="idPaciente">Paciente</label>
+                    <select id="idPaciente" required>
+                        <option value="">Seleccionar paciente</option>
+                    </select>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="idMedico">Medico</label>
+                    <select id="idMedico" required>
+                        <option value="">Seleccionar medico</option>
+                    </select>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="fechaCita">Fecha y Hora</label>
+                    <input type="datetime-local" id="fechaCita" required>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="motivoConsulta">Motivo de Consulta</label>
+                    <textarea id="motivoConsulta" rows="3" required></textarea>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="estadoCita">Estado</label>
+                    <select id="estadoCita">
+                        <option value="Programada">Programada</option>
+                        <option value="Cancelada">Cancelada</option>
+                        <option value="Atendida">Atendida</option>
+                    </select>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="observaciones">Observaciones</label>
+                    <textarea id="observaciones" rows="2"></textarea>
+                </div>
+                <button type="submit" class="boton">Guardar</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="js/agenda.js"></script>
+</body>
+</html>

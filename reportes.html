@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes - Sistema Clinico</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <div class="contenedor-principal">
+        <aside class="barra-lateral">
+            <div class="logo">Sistema Clinico</div>
+            <nav>
+                <ul class="menu-navegacion">
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="pacientes.html">Pacientes</a></li>
+                    <li><a href="agenda.html">Agenda</a></li>
+                    <li><a href="medicos.html">Medicos</a></li>
+                    <li><a href="reportes.html" class="activo">Reportes</a></li>
+                    <li><a href="pagos.html">Pagos</a></li>
+                    <li><a href="tarifas.html">Tarifas</a></li>
+                    <li><a href="bitacoras.html">Bitacoras</a></li>
+                    <li><a href="especialidades.html">Especialidades</a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main class="contenido-principal">
+            <header class="encabezado">
+                <h1>Reportes</h1>
+                <div class="info-usuario">
+                    <span id="nombreUsuario">Usuario</span>
+                    <button class="boton-cerrar-sesion" onclick="cerrarSesion()">Cerrar Sesion</button>
+                </div>
+            </header>
+            
+            <div class="seccion">
+                <h2>Generar Reporte</h2>
+                <form id="formularioReporte">
+                    <div class="fila-formulario">
+                        <div class="grupo-formulario">
+                            <label for="tipoReporte">Tipo de Reporte</label>
+                            <select id="tipoReporte" required>
+                                <option value="">Seleccionar</option>
+                                <option value="Medico">Reporte de Medicos</option>
+                                <option value="Financiero">Reporte Financiero</option>
+                                <option value="Citas">Reporte de Citas</option>
+                                <option value="Pacientes">Reporte de Pacientes</option>
+                            </select>
+                        </div>
+                        <div class="grupo-formulario">
+                            <label for="idPaciente">Paciente (Opcional)</label>
+                            <select id="idPaciente">
+                                <option value="">Todos</option>
+                            </select>
+                        </div>
+                        <div class="grupo-formulario">
+                            <label for="idMedico">Medico (Opcional)</label>
+                            <select id="idMedico">
+                                <option value="">Todos</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="boton boton-pequeno">Generar Reporte</button>
+                </form>
+            </div>
+            
+            <div class="seccion">
+                <h2>Reportes Generados</h2>
+                <div class="tabla-contenedor">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tipo</th>
+                                <th>Fecha Generacion</th>
+                                <th>Generado Por</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaReportes">
+                            <tr>
+                                <td colspan="5" style="text-align: center;">No hay reportes generados</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="js/reportes.js"></script>
+</body>
+</html>

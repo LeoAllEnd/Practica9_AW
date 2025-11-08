@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Especialidades Medicas - Sistema Clinico</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <div class="contenedor-principal">
+        <aside class="barra-lateral">
+            <div class="logo">Sistema Clinico</div>
+            <nav>
+                <ul class="menu-navegacion">
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="pacientes.html">Pacientes</a></li>
+                    <li><a href="agenda.html">Agenda</a></li>
+                    <li><a href="medicos.html">Medicos</a></li>
+                    <li><a href="reportes.html">Reportes</a></li>
+                    <li><a href="pagos.html">Pagos</a></li>
+                    <li><a href="tarifas.html">Tarifas</a></li>
+                    <li><a href="bitacoras.html">Bitacoras</a></li>
+                    <li><a href="especialidades.html" class="activo">Especialidades</a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main class="contenido-principal">
+            <header class="encabezado">
+                <h1>Especialidades Medicas</h1>
+                <div class="info-usuario">
+                    <span id="nombreUsuario">Usuario</span>
+                    <button class="boton-cerrar-sesion" onclick="cerrarSesion()">Cerrar Sesion</button>
+                </div>
+            </header>
+            
+            <div class="seccion">
+                <div class="barra-herramientas">
+                    <div class="barra-busqueda">
+                        <input type="text" id="buscarEspecialidad" placeholder="Buscar especialidad...">
+                    </div>
+                    <div class="botones-accion">
+                        <button class="boton boton-pequeno" onclick="abrirModalNuevo()">Nueva Especialidad</button>
+                    </div>
+                </div>
+                
+                <div class="tabla-contenedor">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Descripcion</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaEspecialidades">
+                            <tr>
+                                <td colspan="4" style="text-align: center;">No hay especialidades registradas</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Modal para agregar/editar especialidad -->
+    <div id="modalEspecialidad" class="modal">
+        <div class="contenido-modal">
+            <button class="cerrar-modal" onclick="cerrarModal()">&times;</button>
+            <h2 id="tituloModal">Nueva Especialidad</h2>
+            <form id="formularioEspecialidad">
+                <input type="hidden" id="idEspecialidad">
+                <div class="grupo-formulario">
+                    <label for="nombreEspecialidad">Nombre de la Especialidad</label>
+                    <input type="text" id="nombreEspecialidad" maxlength="100" required>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="descripcion">Descripcion</label>
+                    <textarea id="descripcion" rows="4" maxlength="250"></textarea>
+                </div>
+                <button type="submit" class="boton">Guardar</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="js/especialidades.js"></script>
+</body>
+</html>

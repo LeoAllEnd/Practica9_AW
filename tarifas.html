@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Tarifas - Sistema Clinico</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <div class="contenedor-principal">
+        <aside class="barra-lateral">
+            <div class="logo">Sistema Clinico</div>
+            <nav>
+                <ul class="menu-navegacion">
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="pacientes.html">Pacientes</a></li>
+                    <li><a href="agenda.html">Agenda</a></li>
+                    <li><a href="medicos.html">Medicos</a></li>
+                    <li><a href="reportes.html">Reportes</a></li>
+                    <li><a href="pagos.html">Pagos</a></li>
+                    <li><a href="tarifas.html" class="activo">Tarifas</a></li>
+                    <li><a href="bitacoras.html">Bitacoras</a></li>
+                    <li><a href="especialidades.html">Especialidades</a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main class="contenido-principal">
+            <header class="encabezado">
+                <h1>Gestor de Tarifas</h1>
+                <div class="info-usuario">
+                    <span id="nombreUsuario">Usuario</span>
+                    <button class="boton-cerrar-sesion" onclick="cerrarSesion()">Cerrar Sesion</button>
+                </div>
+            </header>
+            
+            <div class="seccion">
+                <div class="barra-herramientas">
+                    <div class="barra-busqueda">
+                        <input type="text" id="buscarTarifa" placeholder="Buscar tarifa...">
+                    </div>
+                    <div class="botones-accion">
+                        <button class="boton boton-pequeno" onclick="abrirModalNuevo()">Nueva Tarifa</button>
+                    </div>
+                </div>
+                
+                <div class="tabla-contenedor">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Descripcion</th>
+                                <th>Costo Base</th>
+                                <th>Especialidad</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaTarifas">
+                            <tr>
+                                <td colspan="6" style="text-align: center;">No hay tarifas registradas</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Modal para agregar/editar tarifa -->
+    <div id="modalTarifa" class="modal">
+        <div class="contenido-modal">
+            <button class="cerrar-modal" onclick="cerrarModal()">&times;</button>
+            <h2 id="tituloModal">Nueva Tarifa</h2>
+            <form id="formularioTarifa">
+                <input type="hidden" id="idTarifa">
+                <div class="grupo-formulario">
+                    <label for="descripcionServicio">Descripcion del Servicio</label>
+                    <input type="text" id="descripcionServicio" maxlength="150" required>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="costoBase">Costo Base</label>
+                    <input type="number" id="costoBase" step="0.01" min="0" required>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="especialidadId">Especialidad (Opcional)</label>
+                    <select id="especialidadId">
+                        <option value="">Ninguna</option>
+                    </select>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="estatus">Estado</label>
+                    <select id="estatus">
+                        <option value="1">Activo</option>
+                        <option value="0">Inactivo</option>
+                    </select>
+                </div>
+                <button type="submit" class="boton">Guardar</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="js/tarifas.js"></script>
+</body>
+</html>

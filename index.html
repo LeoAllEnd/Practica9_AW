@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sistema Clinico</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <div class="contenedor-login">
+        <div class="caja-login">
+            <h1>Sistema de Expediente Clinico</h1>
+            <form id="formularioLogin">
+                <div class="grupo-formulario">
+                    <label for="usuario">Usuario</label>
+                    <input type="text" id="usuario" name="usuario" required>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="contrasena">Contrasena</label>
+                    <input type="password" id="contrasena" name="contrasena" required>
+                </div>
+                <button type="submit" class="boton">Iniciar Sesion</button>
+            </form>
+            <p id="mensajeError" style="color: #ef4444; margin-top: 15px; text-align: center; display: none;"></p>
+        </div>
+    </div>
+    <script src="js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Pagos - Sistema Clinico</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <div class="contenedor-principal">
+        <aside class="barra-lateral">
+            <div class="logo">Sistema Clinico</div>
+            <nav>
+                <ul class="menu-navegacion">
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="pacientes.html">Pacientes</a></li>
+                    <li><a href="agenda.html">Agenda</a></li>
+                    <li><a href="medicos.html">Medicos</a></li>
+                    <li><a href="reportes.html">Reportes</a></li>
+                    <li><a href="pagos.html" class="activo">Pagos</a></li>
+                    <li><a href="tarifas.html">Tarifas</a></li>
+                    <li><a href="bitacoras.html">Bitacoras</a></li>
+                    <li><a href="especialidades.html">Especialidades</a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main class="contenido-principal">
+            <header class="encabezado">
+                <h1>Gestor de Pagos</h1>
+                <div class="info-usuario">
+                    <span id="nombreUsuario">Usuario</span>
+                    <button class="boton-cerrar-sesion" onclick="cerrarSesion()">Cerrar Sesion</button>
+                </div>
+            </header>
+            
+            <div class="seccion">
+                <div class="barra-herramientas">
+                    <div class="barra-busqueda">
+                        <input type="text" id="buscarPago" placeholder="Buscar pago...">
+                    </div>
+                    <div class="botones-accion">
+                        <button class="boton boton-pequeno" onclick="abrirModalNuevo()">Registrar Pago</button>
+                    </div>
+                </div>
+                
+                <div class="tabla-contenedor">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Cita</th>
+                                <th>Paciente</th>
+                                <th>Monto</th>
+                                <th>Metodo</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaPagos">
+                            <tr>
+                                <td colspan="7" style="text-align: center;">No hay pagos registrados</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Modal para agregar/editar pago -->
+    <div id="modalPago" class="modal">
+        <div class="contenido-modal">
+            <button class="cerrar-modal" onclick="cerrarModal()">&times;</button>
+            <h2 id="tituloModal">Registrar Pago</h2>
+            <form id="formularioPago">
+                <input type="hidden" id="idPago">
+                <div class="grupo-formulario">
+                    <label for="idCita">Cita</label>
+                    <select id="idCita" required>
+                        <option value="">Seleccionar cita</option>
+                    </select>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="idPaciente">Paciente</label>
+                    <select id="idPaciente" required>
+                        <option value="">Seleccionar paciente</option>
+                    </select>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="monto">Monto</label>
+                    <input type="number" id="monto" step="0.01" min="0" required>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="metodoPago">Metodo de Pago</label>
+                    <select id="metodoPago" required>
+                        <option value="">Seleccionar</option>
+                        <option value="Efectivo">Efectivo</option>
+                        <option value="Tarjeta">Tarjeta</option>
+                        <option value="Transferencia">Transferencia</option>
+                    </select>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="referencia">Referencia</label>
+                    <input type="text" id="referencia" maxlength="100">
+                </div>
+                <div class="grupo-formulario">
+                    <label for="estatusPago">Estado del Pago</label>
+                    <select id="estatusPago">
+                        <option value="Pagado">Pagado</option>
+                        <option value="Pendiente">Pendiente</option>
+                        <option value="Cancelado">Cancelado</option>
+                    </select>
+                </div>
+                <button type="submit" class="boton">Guardar</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="js/pagos.js"></script>
+</body>
+</html>

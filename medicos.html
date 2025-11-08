@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Medicos - Sistema Clinico</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <div class="contenedor-principal">
+        <aside class="barra-lateral">
+            <div class="logo">Sistema Clinico</div>
+            <nav>
+                <ul class="menu-navegacion">
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="pacientes.html">Pacientes</a></li>
+                    <li><a href="agenda.html">Agenda</a></li>
+                    <li><a href="medicos.html" class="activo">Medicos</a></li>
+                    <li><a href="reportes.html">Reportes</a></li>
+                    <li><a href="pagos.html">Pagos</a></li>
+                    <li><a href="tarifas.html">Tarifas</a></li>
+                    <li><a href="bitacoras.html">Bitacoras</a></li>
+                    <li><a href="especialidades.html">Especialidades</a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main class="contenido-principal">
+            <header class="encabezado">
+                <h1>Control de Medicos</h1>
+                <div class="info-usuario">
+                    <span id="nombreUsuario">Usuario</span>
+                    <button class="boton-cerrar-sesion" onclick="cerrarSesion()">Cerrar Sesion</button>
+                </div>
+            </header>
+            
+            <div class="seccion">
+                <div class="barra-herramientas">
+                    <div class="barra-busqueda">
+                        <input type="text" id="buscarMedico" placeholder="Buscar medico...">
+                    </div>
+                    <div class="botones-accion">
+                        <button class="boton boton-pequeno" onclick="abrirModalNuevo()">Nuevo Medico</button>
+                    </div>
+                </div>
+                
+                <div class="tabla-contenedor">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre Completo</th>
+                                <th>Cedula</th>
+                                <th>Especialidad</th>
+                                <th>Telefono</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaMedicos">
+                            <tr>
+                                <td colspan="7" style="text-align: center;">No hay medicos registrados</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Modal para agregar/editar medico -->
+    <div id="modalMedico" class="modal">
+        <div class="contenido-modal">
+            <button class="cerrar-modal" onclick="cerrarModal()">&times;</button>
+            <h2 id="tituloModal">Nuevo Medico</h2>
+            <form id="formularioMedico">
+                <input type="hidden" id="idMedico">
+                <div class="grupo-formulario">
+                    <label for="nombreCompleto">Nombre Completo</label>
+                    <input type="text" id="nombreCompleto" required>
+                </div>
+                <div class="fila-formulario">
+                    <div class="grupo-formulario">
+                        <label for="cedulaProfesional">Cedula Profesional</label>
+                        <input type="text" id="cedulaProfesional" maxlength="50" required>
+                    </div>
+                    <div class="grupo-formulario">
+                        <label for="especialidadId">Especialidad</label>
+                        <select id="especialidadId" required>
+                            <option value="">Seleccionar</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="fila-formulario">
+                    <div class="grupo-formulario">
+                        <label for="telefono">Telefono</label>
+                        <input type="text" id="telefono" maxlength="20" required>
+                    </div>
+                    <div class="grupo-formulario">
+                        <label for="correoElectronico">Correo Electronico</label>
+                        <input type="email" id="correoElectronico" required>
+                    </div>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="horarioAtencion">Horario de Atencion</label>
+                    <input type="text" id="horarioAtencion" placeholder="Ej: Lun-Vie 9:00-17:00">
+                </div>
+                <div class="grupo-formulario">
+                    <label for="estatus">Estado</label>
+                    <select id="estatus">
+                        <option value="1">Activo</option>
+                        <option value="0">Inactivo</option>
+                    </select>
+                </div>
+                <button type="submit" class="boton">Guardar</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="js/medicos.js"></script>
+</body>
+</html>
