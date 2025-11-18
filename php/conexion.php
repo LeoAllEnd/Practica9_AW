@@ -2,8 +2,8 @@
 // Archivo de conexion a la base de datos
 // Puse estos datos porque son los que vienen por defecto en XAMPP
 $servidor = "localhost";
-$usuario = "root";
-$contrasena = "";
+$usuario = "admin";
+$contrasena = "bd47f317327554de46ab4133b088bbeaf79f082a1018a1c3";
 $baseDatos = "expediente_clinico";
 
 // Creo la conexion
