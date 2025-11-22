@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario de Citas - Sistema Clinico</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <style>
+        .calendario-contenedor {
+            background-color: var(--color-secundario);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--color-borde);
+        }
+        
+        .calendario-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .calendario-header h2 {
+            color: var(--color-acento);
+            margin: 0;
+        }
+        
+        .controles-mes {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .boton-mes {
+            background-color: var(--color-acento);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .boton-mes:hover {
+            background-color: var(--color-acento-hover);
+        }
+        
+        .dias-semana {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .dia-semana {
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            color: var(--color-acento);
+            background-color: var(--color-terciario);
+            border-radius: 5px;
+        }
+        
+        .dias-calendario {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+        
+        .dia-celda {
+            min-height: 100px;
+            padding: 8px;
+            background-color: var(--color-terciario);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .dia-celda:hover {
+            background-color: var(--color-borde);
+            transform: scale(1.02);
+        }
+        
+        .dia-celda.otro-mes {
+            opacity: 0.3;
+        }
+        
+        .dia-celda.hoy {
+            border: 2px solid var(--color-acento);
+        }
+        
+        .dia-numero {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--color-texto);
+        }
+        
+        .cita-item {
+            background-color: var(--color-acento);
+            color: white;
+            padding: 3px 5px;
+            border-radius: 3px;
+            font-size: 11px;
+            margin-bottom: 3px;
+            cursor: pointer;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .cita-item:hover {
+            background-color: var(--color-acento-hover);
+        }
+        
+        .contador-citas {
+            font-size: 10px;
+            color: var(--color-texto-secundario);
+            margin-top: 5px;
+        }
+        
+        .leyenda {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .leyenda-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .leyenda-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor-principal">
+        <aside class="barra-lateral">
+            <div class="logo">Sistema Clinico</div>
+            <nav>
+                <ul class="menu-navegacion">
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="pacientes.html">Pacientes</a></li>
+                    <li><a href="agenda.html">Agenda</a></li>
+                    <li><a href="calendario.html" class="activo">Calendario</a></li>
+                    <li><a href="medicos.html">Medicos</a></li>
+                    <li><a href="reportes.html">Reportes</a></li>
+                    <li><a href="pagos.html">Pagos</a></li>
+                    <li><a href="tarifas.html">Tarifas</a></li>
+                    <li><a href="bitacoras.html">Bitacoras</a></li>
+                    <li><a href="especialidades.html">Especialidades</a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main class="contenido-principal">
+            <header class="encabezado">
+                <h1>Calendario de Citas</h1>
+                <div class="info-usuario">
+                    <span id="nombreUsuario">Usuario</span>
+                    <button class="boton-cerrar-sesion" onclick="cerrarSesion()">Cerrar Sesion</button>
+                </div>
+            </header>
+            
+            <div class="seccion">
+                <div class="barra-herramientas">
+                    <div class="barra-busqueda">
+                        <select id="filtroMedico" style="padding: 10px; background-color: var(--color-terciario); border: 1px solid var(--color-borde); border-radius: 5px; color: var(--color-texto);">
+                            <option value="">Todos los medicos</option>
+                        </select>
+                    </div>
+                    <div class="botones-accion">
+                        <button class="boton boton-pequeno" onclick="irAAgenda()">Ver Lista</button>
+                        <button class="boton boton-pequeno" onclick="abrirModalNuevaCita()">Nueva Cita</button>
+                    </div>
+                </div>
+                
+                <div class="calendario-contenedor">
+                    <div class="calendario-header">
+                        <h2 id="mesAnio">Enero 2025</h2>
+                        <div class="controles-mes">
+                            <button class="boton-mes" onclick="mesAnterior()">&#8249;</button>
+                            <button class="boton-mes" onclick="hoy()">Hoy</button>
+                            <button class="boton-mes" onclick="mesSiguiente()">&#8250;</button>
+                        </div>
+                    </div>
+                    
+                    <div class="dias-semana">
+                        <div class="dia-semana">Dom</div>
+                        <div class="dia-semana">Lun</div>
+                        <div class="dia-semana">Mar</div>
+                        <div class="dia-semana">Mie</div>
+                        <div class="dia-semana">Jue</div>
+                        <div class="dia-semana">Vie</div>
+                        <div class="dia-semana">Sab</div>
+                    </div>
+                    
+                    <div class="dias-calendario" id="diasCalendario">
+                        <!-- Aqui se generan los dias del calendario con JS -->
+                    </div>
+                    
+                    <div class="leyenda">
+                        <div class="leyenda-item">
+                            <div class="leyenda-color" style="background-color: var(--color-acento);"></div>
+                            <span>Cita Programada</span>
+                        </div>
+                        <div class="leyenda-item">
+                            <div class="leyenda-color" style="background-color: var(--color-exito);"></div>
+                            <span>Cita Atendida</span>
+                        </div>
+                        <div class="leyenda-item">
+                            <div class="leyenda-color" style="background-color: var(--color-peligro);"></div>
+                            <span>Cita Cancelada</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="js/calendario.js"></script>
+</body>
+</html>

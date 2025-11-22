@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expediente Clinico - Sistema Clinico</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <div class="contenedor-principal">
+        <aside class="barra-lateral">
+            <div class="logo">Sistema Clinico</div>
+            <nav>
+                <ul class="menu-navegacion">
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="pacientes.html">Pacientes</a></li>
+                    <li><a href="agenda.html">Agenda</a></li>
+                    <li><a href="medicos.html">Medicos</a></li>
+                    <li><a href="expediente.html" class="activo">Expedientes</a></li>
+                    <li><a href="reportes.html">Reportes</a></li>
+                    <li><a href="pagos.html">Pagos</a></li>
+                    <li><a href="tarifas.html">Tarifas</a></li>
+                    <li><a href="bitacoras.html">Bitacoras</a></li>
+                    <li><a href="especialidades.html">Especialidades</a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main class="contenido-principal">
+            <header class="encabezado">
+                <h1>Expedientes Clinicos</h1>
+                <div class="info-usuario">
+                    <span id="nombreUsuario">Usuario</span>
+                    <button class="boton-cerrar-sesion" onclick="cerrarSesion()">Cerrar Sesion</button>
+                </div>
+            </header>
+            
+            <div class="seccion">
+                <div class="barra-herramientas">
+                    <div class="barra-busqueda">
+                        <input type="text" id="buscarExpediente" placeholder="Buscar por paciente...">
+                        <select id="filtroPaciente" style="margin-left: 10px; padding: 10px; background-color: var(--color-terciario); border: 1px solid var(--color-borde); border-radius: 5px; color: var(--color-texto);">
+                            <option value="">Todos los pacientes</option>
+                        </select>
+                    </div>
+                    <div class="botones-accion">
+                        <button class="boton boton-pequeno" onclick="abrirModalNuevo()">Nuevo Expediente</button>
+                    </div>
+                </div>
+                
+                <div class="tabla-contenedor">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Paciente</th>
+                                <th>Medico</th>
+                                <th>Fecha Consulta</th>
+                                <th>Diagnostico</th>
+                                <th>Proxima Cita</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaExpedientes">
+                            <tr>
+                                <td colspan="7" style="text-align: center;">No hay expedientes registrados</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Modal para agregar/editar expediente -->
+    <div id="modalExpediente" class="modal">
+        <div class="contenido-modal">
+            <button class="cerrar-modal" onclick="cerrarModal()">&times;</button>
+            <h2 id="tituloModal">Nuevo Expediente</h2>
+            <form id="formularioExpediente">
+                <input type="hidden" id="idExpediente">
+                <div class="fila-formulario">
+                    <div class="grupo-formulario">
+                        <label for="idPaciente">Paciente</label>
+                        <select id="idPaciente" required>
+                            <option value="">Seleccionar paciente</option>
+                        </select>
+                    </div>
+                    <div class="grupo-formulario">
+                        <label for="idMedico">Medico</label>
+                        <select id="idMedico" required>
+                            <option value="">Seleccionar medico</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="fechaConsulta">Fecha de Consulta</label>
+                    <input type="datetime-local" id="fechaConsulta" required>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="sintomas">Sintomas</label>
+                    <textarea id="sintomas" rows="3" placeholder="Describa los sintomas del paciente..." required></textarea>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="diagnostico">Diagnostico</label>
+                    <textarea id="diagnostico" rows="3" placeholder="Diagnostico medico..." required></textarea>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="tratamiento">Tratamiento</label>
+                    <textarea id="tratamiento" rows="3" placeholder="Tratamiento prescrito..."></textarea>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="recetaMedica">Receta Medica</label>
+                    <textarea id="recetaMedica" rows="4" placeholder="Medicamentos y dosis..."></textarea>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="notasAdicionales">Notas Adicionales</label>
+                    <textarea id="notasAdicionales" rows="2" placeholder="Observaciones adicionales..."></textarea>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="proximaCita">Proxima Cita (Opcional)</label>
+                    <input type="datetime-local" id="proximaCita">
+                </div>
+                <button type="submit" class="boton">Guardar Expediente</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="js/expediente.js"></script>
+</body>
+</html>
